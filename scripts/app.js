@@ -34,24 +34,24 @@ function createTable(filteredData) {
 
     let tbodyRef = document.getElementById('vaccine-table-body');
 
-    for (let i = 0; i < filteredData.length; i++) {
-
+    filteredData.forEach(center => {
         let newRow = tbodyRef.insertRow();
 
-        AddCell(newRow, filteredData[i].name);
-        AddCell(newRow, filteredData[i].pincode);
+        AddCell(newRow, center.name);
+        AddCell(newRow, center.pincode);
 
-        filteredData[i].sessions.forEach(session => {                               //some sessions are empty 
-            if (session.available_capacity_dose1 > 0 || session.available_capacity_dose2 > 0) {
-                AddCell(newRow, session.date);
-                AddCell(newRow, session.available_capacity_dose1);
-                AddCell(newRow, session.available_capacity_dose2);
-                AddCell(newRow, session.min_age_limit);
+        for (let j = 0; j < center.sessions.length; j++) {
+            if (center.sessions[j].available_capacity_dose1 > 0 || center.sessions[j].available_capacity_dose2 > 0) {
+                AddCell(newRow, center.sessions[j].date);
+                AddCell(newRow, center.sessions[j].available_capacity_dose1);
+                AddCell(newRow, center.sessions[j].available_capacity_dose2);
+                AddCell(newRow, center.sessions[j].min_age_limit);
                 return;
             }
-        });
-    }
+        }
+    });    
 }
+
 
 function getUserNotificationStatus() {
     const notifyMeButton = document.querySelector('#notify-me-button');
@@ -131,8 +131,9 @@ function filterDataBasedOnAge(data, age) {
                         filteredArray.push(center);
                     }
                         break;
-                    default: filteredArray.push(center);
+                    case 0: filteredArray.push(center);
                 }
+                return;
             }
         }
     });
@@ -170,6 +171,7 @@ function filterDataBasedOnDose(data, dose) {
                         break;
                     default: filteredArray.push(center);
                 }
+                return;
             }
         }
     });
@@ -182,16 +184,21 @@ function getVaccineDataFromAPI() {
     const url = getApiUrl();
     fetch(url).then((res) => {
         res.json().then((data) => {
+
             let filteredData = filterDataBasedOnAvailability(data.centers);
+
             filteredData = filterDataBasedOnAge(filteredData, minAgeLimit);
+
             filteredData = filterDataBasedOnDose(filteredData, dose);
             //console.log(filteredData);
-            
+            console.log(filteredData);
+
             if (notificationStatus) {
                 if (filteredData.length > 0) {
                     sendNotification();
                 }
             }
+
 
             createTable(filteredData);
 
@@ -223,5 +230,5 @@ getUserNotificationStatus();
 
 navigator.serviceWorker.register('./sw.js');
 
-setInterval(function () { getVaccineDataFromAPI() }, 10000);
+setInterval(function () { getVaccineDataFromAPI() }, 10000000);
 
