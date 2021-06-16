@@ -131,7 +131,7 @@ function filterDataBasedOnAge(data, age) {
                         filteredArray.push(center);
                     }
                         break;
-                    case 0: filteredArray.push(center);
+                    default: filteredArray.push(center);
                 }
                 return;
             }
@@ -139,6 +139,7 @@ function filterDataBasedOnAge(data, age) {
     });
     return filteredArray;
 }
+
 
 function getUserInputDose() {
     const doseFilterButton = document.querySelectorAll('#dose-filter-button');
@@ -191,7 +192,6 @@ function getVaccineDataFromAPI() {
 
             filteredData = filterDataBasedOnDose(filteredData, dose);
             //console.log(filteredData);
-            console.log(filteredData);
 
             if (notificationStatus) {
                 if (filteredData.length > 0) {
@@ -230,5 +230,5 @@ getUserNotificationStatus();
 
 navigator.serviceWorker.register('./sw.js');
 
-setInterval(function () { getVaccineDataFromAPI() }, 10000000);
+setInterval(function () { getVaccineDataFromAPI() }, 10000);
 
