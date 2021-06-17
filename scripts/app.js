@@ -49,7 +49,7 @@ function createTable(filteredData) {
                 return;
             }
         }
-    });    
+    });
 }
 
 
@@ -123,14 +123,21 @@ function filterDataBasedOnAge(data, age) {
         for (let i = 0; i < center.sessions.length; i++) {
             if (center.sessions[i].available_capacity_dose1 > 0 || center.sessions[i].available_capacity_dose2 > 0) {
                 switch (age) {
-                    case 18: if (center.sessions[i].min_age_limit < 45) {
+                    case 18: if (center.sessions[i].min_age_limit == 18) {
                         filteredArray.push(center);
                     }
                         break;
-                    case 45: if (center.sessions[i].min_age_limit >= 45) {
+
+                    case 40: if (center.sessions[i].min_age_limit == 40) {
                         filteredArray.push(center);
                     }
                         break;
+
+                    case 45: if (center.sessions[i].min_age_limit == 45) {
+                        filteredArray.push(center);
+                    }
+                        break;
+
                     default: filteredArray.push(center);
                 }
                 return;
