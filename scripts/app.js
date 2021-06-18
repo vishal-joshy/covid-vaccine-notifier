@@ -46,6 +46,7 @@ function createTable(filteredData) {
                 AddCell(newRow, center.sessions[j].available_capacity_dose1);
                 AddCell(newRow, center.sessions[j].available_capacity_dose2);
                 AddCell(newRow, center.sessions[j].min_age_limit);
+                AddCell(newRow, center.sessions[j].vaccine)
                 return;
             }
         }
@@ -205,7 +206,7 @@ function getVaccineDataFromAPI() {
                     sendNotification();
                 }
             }
-
+            
 
             createTable(filteredData);
 
