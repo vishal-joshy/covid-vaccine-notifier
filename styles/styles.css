@@ -93,6 +93,11 @@ button:hover{
   float: right;
 }
 
+#no-vaccines-message{
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 600px){
   #vaccine-list-table{
       font-size: 8px;
@@ -106,4 +111,8 @@ button:hover{
 
 .button-selected{
   background-color: mediumspringgreen;
+}
+
+.hide-content{
+  visibility: hidden;
 }
