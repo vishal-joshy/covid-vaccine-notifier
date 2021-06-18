@@ -117,7 +117,7 @@ function clearButtonStyle(button) {
     })
 }
 
-function HideTable() {
+function hideTable() {
     const vaccineListTable = document.querySelector('#vaccine-list-table');
     vaccineListTable.classList.add('hide-content');
 }
@@ -130,11 +130,18 @@ function makeTableVisible() {
     const vaccineListTable = document.querySelector('#vaccine-list-table');
     vaccineListTable.classList.remove('hide-content');
 }
-function HideNoVaccineText() {
+function hideNoVaccineText() {
     const noVaccineMessage = document.querySelector('#no-vaccines-message');
     noVaccineMessage.classList.add('hide-content');
 }
-
+function hideCowinButton(){
+    const cowinButton = document.querySelector('#cowin-link-button');
+    cowinButton.classList.add('hide-content');
+}
+function makeCowinButtonVisible(){
+    const cowinButton = document.querySelector('#cowin-link-button');
+    cowinButton.classList.remove('hide-content');
+}
 
 function filterDataBasedOnAge(data, age) {
     let filteredArray = [];
@@ -224,10 +231,12 @@ function getVaccineDataFromAPI() {
                     sendNotification();
                 }
                 makeTableVisible();
-                HideNoVaccineText();
+                hideNoVaccineText();
+                makeCowinButtonVisible();
             } else {
-                HideTable();
+                hideTable();
                 makeNoVaccineTextVisible();
+                hideCowinButton();
             }
 
             createTable(filteredData);

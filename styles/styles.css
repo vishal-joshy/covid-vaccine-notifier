@@ -37,6 +37,7 @@ h3{
 
 #filter-buttons{
   display: flex;
+  justify-content: space-around;
 }
 
 #age-filters{
@@ -57,6 +58,7 @@ button{
   font-size: 16px;
   margin: 4px 2px;
   width: 7em;
+  border-radius: 5px;
 }
 
 button:hover{
@@ -96,6 +98,14 @@ button:hover{
 #no-vaccines-message{
   display: flex;
   justify-content: center;
+}
+
+#cowin-link{
+    display: flex;
+    justify-content: center;
+}
+#cowin-link-button{
+  width: 10em;
 }
 
 @media screen and (max-width: 600px){
