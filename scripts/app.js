@@ -9,7 +9,7 @@ function getPresentDate() {
 
 function getApiUrl() {
     const districId = 307;           //Ekm id = 307 from https://cdn-api.co-vin.in/api/v2/admin/location/districts/17
-    let presentDate = getPresentDate();
+    const presentDate = getPresentDate();
     const apiUrl = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${districId}&date=${presentDate}`;
     return apiUrl;
 }
