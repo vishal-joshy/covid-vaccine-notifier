@@ -1,10 +1,16 @@
 function getPresentDate() {
     let today = new Date();
-    const dd = String(today.getDate());
-    const mm = String(today.getMonth() + 1);
-    const yyyy = String(today.getFullYear());
-    today = `${dd}-0${mm}-${yyyy}`;
-    return today;
+		const dd = String(today.getDate());
+		let mm = today.getMonth() + 1;
+		let mmModifiedString;
+		if (mm < 10) {
+			mmModifiedString = `0${mm}`;
+		} else {
+			mmModifiedString = `${mm}`;
+		}
+		const yyyy = String(today.getFullYear());
+		today = `${dd}-${mmModifiedString}-${yyyy}`;
+		return today;
 }
 
 function getApiUrl() {
